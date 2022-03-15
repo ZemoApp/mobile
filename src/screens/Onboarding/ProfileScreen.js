@@ -69,32 +69,34 @@ export default ({ navigation }) => {
 
   const handleSavePress = async () => {
     // TODO add loading state
+    navigation.popToTop();
+    navigation.push('OnboardingRecovery');
+    
+    // const formData = new FormData();
 
-    const formData = new FormData();
+    // // if an avatar was selected upload it to IPFS
+    // if (imageFile !== null) {
+    //   formData.append('avatar', imageFile);
 
-    // if an avatar was selected upload it to IPFS
-    if (imageFile !== null) {
-      formData.append('avatar', imageFile);
+    //   // call the create post API
+    //   const res = await fetch(`https://zemo.app/api`, {
+    //     method: 'POST',
+    //     body: formData
+    //   })
+    //   const data = await res.json();
 
-      // call the create post API
-      const res = await fetch(`https://zemo.app/api`, {
-        method: 'POST',
-        body: formData
-      })
-      const data = await res.json();
+    //   console.log(res);
 
-      console.log(res);
-
-      // check the response from the avatar upload
-      if (res.ok) {
-        navigation.popToTop();
-        navigation.push('OnboardingRecovery');
-      } else {
-        Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');                    
-      }
-    } else {
-      alert('No image');
-    }
+    //   // check the response from the avatar upload
+    //   if (res.ok) {
+    //     navigation.popToTop();
+    //     navigation.push('OnboardingRecovery');
+    //   } else {
+    //     Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');                    
+    //   }
+    // } else {
+    //   alert('No image');
+    // }
   }
 
   return (

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/wolf/Documents/GitHub/zemo/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
+            "outputFile": "/Users/wolf/Documents/zemo/mobile/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
             "map": [
                 {
                     "source": "/Users/wolf/.gradle/caches/transforms-3/cc228208a118abab8e3626daa1d5d918/transformed/appcompat-1.3.0/res/values-cs/values-cs.xml",

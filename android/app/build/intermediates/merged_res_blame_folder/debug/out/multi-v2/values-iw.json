@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/wolf/Documents/GitHub/zemo/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
+            "outputFile": "/Users/wolf/Documents/zemo/mobile/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
             "map": [
                 {
                     "source": "/Users/wolf/.gradle/caches/transforms-3/9da304a4e1454f6ba3abde22bba97527/transformed/biometric-1.1.0/res/values-iw/values-iw.xml",
