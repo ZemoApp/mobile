@@ -1,0 +1,6 @@
+module EXClipboard {
+  umbrella header "EXClipboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

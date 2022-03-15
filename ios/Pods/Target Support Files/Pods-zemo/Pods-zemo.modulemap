@@ -1,0 +1,6 @@
+module Pods_zemo {
+  umbrella header "Pods-zemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
