@@ -8,7 +8,7 @@ export default ({ label, loading = false, onPress }) => {
     return (
         <TouchableOpacity style={styles.button} activeOpacity={1} onPress={onPress} >
             {loading && 
-                <ActivityIndicator />
+                <ActivityIndicator color={Colors.black} />
             }
                 
             {!loading && 

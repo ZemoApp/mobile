@@ -62,13 +62,16 @@ export default ({ navigation }) => {
   const handleInputChange = (text) => {
     if (text.length >= NAME_MAX_LENGTH){
       Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyNameLimitReached'));
-      return;
     }
     setName(text);
-    setButtonLabel(text !== '' || imageSource !== null ? i18n.t('buttonSave') : i18n.t('buttonSkip'));
+    setButtonLabel(text !== '' || avatar !== null ? i18n.t('buttonSave') : i18n.t('buttonSkip'));
   }
 
   const handleSavePress = async () => {
+    if (loading) {
+      return;
+    } 
+
     setLoading(true);
     
     // if an avatar was selected upload it to IPFS
@@ -86,19 +89,32 @@ export default ({ navigation }) => {
       .then(responseData => {
           if (responseData.message['IpfsHash']){ 
             setAvatarHash(responseData.message['IpfsHash']);
-            navigation.reset({ index: 0, routes: [{ name: 'OnboardingRecovery' }] });
           } else {
-            Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));     
+            Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));   
+            setLoading(false);   
+            return;  
           }
-          setLoading(false);    
 
       }).catch(error => { 
           Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));     
           setLoading(false);   
+          return;
       })
     }
 
-    // todo save name and avatarHash to local storage
+    // the user is skipping filling out their profile, send them to the next view
+    if (avatar === null && name === null) {
+      navigation.reset({ index: 0, routes: [{ name: 'OnboardingRecovery' }] });
+      setLoading(false);   
+      return;
+    }
+
+    // the user filled out their profile, save their data to localStorage
+    if (avatar !== null || name !== null) {
+      navigation.reset({ index: 0, routes: [{ name: 'OnboardingRecovery' }] });
+      setLoading(false);   
+      return;
+    }
   }
 
   return (

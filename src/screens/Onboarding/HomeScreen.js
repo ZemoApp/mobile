@@ -49,7 +49,7 @@ export default ({ navigation }) => {
         <RBSheet 
           ref={refRBSheet} 
           closeOnDragDown={true} 
-          height={144}
+          height={148}
           customStyles={{
             container: {
               backgroundColor: theme === 'dark' ? Colors.dark : Colors.white
