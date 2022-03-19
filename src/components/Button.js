@@ -1,13 +1,19 @@
 import React from 'react';
-import { Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { Text, TouchableOpacity, useColorScheme, ActivityIndicator } from 'react-native';
 import { Colors } from '@constants';
 
-export default ({ label, onPress }) => {
+export default ({ label, loading = false, onPress }) => {
     const theme = useColorScheme();
 
     return (
         <TouchableOpacity style={styles.button} activeOpacity={1} onPress={onPress} >
-            <Text style={styles.buttonText}>{label}</Text>  
+            {loading && 
+                <ActivityIndicator />
+            }
+                
+            {!loading && 
+                <Text style={styles.buttonText}>{label}</Text>  
+            }
         </TouchableOpacity>
     ); 
 }

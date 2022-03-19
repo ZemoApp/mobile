@@ -27,9 +27,11 @@ const NAME_MAX_LENGTH = 30;
 
 export default ({ navigation }) => {
   const theme = useColorScheme();
+  const [loading, setLoading] = useState(false);
   const [buttonLabel, setButtonLabel] = useState(i18n.t('buttonSkip'));
-  const [imageFile, setImageFile] = useState(null);
-  const [imageSource, setImageSource] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [avatarHash, setAvatarHash] = useState(null);
+  const [name, setName] = useState(null);
 
   const handleSelectAvatar = async () => {
     const options = {
@@ -42,10 +44,8 @@ export default ({ navigation }) => {
 
     if (!result.didCancel && !result.error) {
       let asset = result.assets[0];
-      console.log(asset);
       if (asset.type === 'image/jpeg' || asset.type === 'image/png') {
-        setImageFile(asset.uri);
-        setImageSource(asset.uri);
+        setAvatar(asset);
         setButtonLabel(i18n.t('buttonSave'));
       } else {
         Alert.alert(i18n.t('dialogTitleError'), i18n.t('dialogBodyIncorrectImageType'))
@@ -62,41 +62,43 @@ export default ({ navigation }) => {
   const handleInputChange = (text) => {
     if (text.length >= NAME_MAX_LENGTH){
       Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyNameLimitReached'));
+      return;
     }
-
+    setName(text);
     setButtonLabel(text !== '' || imageSource !== null ? i18n.t('buttonSave') : i18n.t('buttonSkip'));
   }
 
   const handleSavePress = async () => {
-    // TODO add loading state
-    navigation.popToTop();
-    navigation.push('OnboardingRecovery');
+    setLoading(true);
     
-    // const formData = new FormData();
+    // if an avatar was selected upload it to IPFS
+    if (avatar !== null) {
+      const formData = new FormData();
+      formData.append('avatar', avatar);
 
-    // // if an avatar was selected upload it to IPFS
-    // if (imageFile !== null) {
-    //   formData.append('avatar', imageFile);
+      // // call the create post API
+      await fetch(`https://zemo.app/api/avatar`, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .then(response => { return response.json() })
+      .then(responseData => {
+          if (responseData.message['IpfsHash']){ 
+            setAvatarHash(responseData.message['IpfsHash']);
+            navigation.reset({ index: 0, routes: [{ name: 'OnboardingRecovery' }] });
+          } else {
+            Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');     
+          }
+          setLoading(false);    
 
-    //   // call the create post API
-    //   const res = await fetch(`https://zemo.app/api`, {
-    //     method: 'POST',
-    //     body: formData
-    //   })
-    //   const data = await res.json();
+      }).catch(error => {
+          Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');     
+          setLoading(false);   
+      })
+    }
 
-    //   console.log(res);
-
-    //   // check the response from the avatar upload
-    //   if (res.ok) {
-    //     navigation.popToTop();
-    //     navigation.push('OnboardingRecovery');
-    //   } else {
-    //     Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');                    
-    //   }
-    // } else {
-    //   alert('No image');
-    // }
+    // todo save name and avatarHash to local storage
   }
 
   return (
@@ -105,7 +107,7 @@ export default ({ navigation }) => {
         <View style={styles.top}>
 
           <TouchableOpacity onPress={handleSelectAvatar} activeOpacity={1} style={{alignItems: 'center'}}>
-            {imageSource === null ? (
+            {avatar === null ? (
               <View style={[styles.avatar, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
                 <Icon name="add" size={44} style={{color: theme === 'dark' ? Colors.yellow : Colors.darkGray}} />
               </View>
@@ -113,7 +115,7 @@ export default ({ navigation }) => {
               <ImageBackground 
                 style={styles.avatar} 
                 imageStyle={{ borderRadius: 65}}
-                source={{ uri: imageSource }} 
+                source={{ uri: avatar.uri }} 
                 resizeMode="cover" />
             )}
 
@@ -140,6 +142,7 @@ export default ({ navigation }) => {
 
         <Button 
             label={buttonLabel} 
+            loading={loading}
             onPress={handleSavePress} />
       </View>
     </View>
