@@ -24,6 +24,9 @@ i18n.translations = { en, zh, hi, es, ru };
 i18n.locale = Localization.locale;
 
 const NAME_MAX_LENGTH = 30;
+const AVATAR_MAX_HEIGHT = 400;
+const AVATAR_MAX_WIDTH = 400;
+const AVATAR_QUALITY = 0.85;
 
 export default ({ navigation }) => {
   const theme = useColorScheme();
@@ -37,12 +40,13 @@ export default ({ navigation }) => {
     const options = {
       selectionLimit: 1,
       mediaType: 'photo', 
-      maxHeight: 400,
-      maxWidth: 400 
+      maxHeight: AVATAR_MAX_HEIGHT,  
+      maxWidth: AVATAR_MAX_WIDTH,
+      quality: AVATAR_QUALITY,
     }
     const result = await launchImageLibrary(options);
 
-    if (!result.didCancel && !result.error) {
+    if (!result.didCancel && !result.error) { 
       let asset = result.assets[0];
       if (asset.type === 'image/jpeg' || asset.type === 'image/png') {
         setAvatar(asset);
@@ -52,7 +56,7 @@ export default ({ navigation }) => {
       }
     } else if (result.error) {
       Alert.alert('Error', response.error);
-    } else if (result.didCancel) {
+    } else if (result.didCancel) { 
       // user cancelled the request
     } else {
       Alert.alert(i18n.t('dialogTitleError'), i18n.t('dialogBodyPleaseTryAgain'));
