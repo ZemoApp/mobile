@@ -88,12 +88,12 @@ export default ({ navigation }) => {
             setAvatarHash(responseData.message['IpfsHash']);
             navigation.reset({ index: 0, routes: [{ name: 'OnboardingRecovery' }] });
           } else {
-            Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');     
+            Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));     
           }
           setLoading(false);    
 
-      }).catch(error => {
-          Alert.alert(i18n.t('dialogTitleNotice'), 'An unknow error happened. Please try again.');     
+      }).catch(error => { 
+          Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));     
           setLoading(false);   
       })
     }
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
 
   bottom: {
     alignItems: 'center',
-    bottom: 20,
+    bottom: 24,
     paddingHorizontal: 20,
     position: 'absolute',
     width: '100%'

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   bottom: {
     alignItems: 'center',
-    bottom: 20,
+    bottom: 24,
     position: 'absolute',
     width: '100%'
   },
