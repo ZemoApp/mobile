@@ -20,13 +20,19 @@ export default ({ id, navigation, refRBSheet }) => {
     const theme = useColorScheme();
     
     const handleOnboardingNew = () => {
-        navigation.push('OnboardingProfile');
         refRBSheet.current.close();
+        // I put a small timeout here to avoid a UI glitch when the view change
+        setTimeout(() => {
+            navigation.push('OnboardingProfile')
+        }, 200)
     }
 
     const handleOnboardingRestore = () => {
-        navigation.push('Restore');
         refRBSheet.current.close();   
+        // I put a small timeout here to avoid a UI glitch when the view change
+        setTimeout(() => {
+            navigation.push('Restore');
+        }, 200)
     }
 
     const handleOnboardingRecoveryConfirmPress = () => {

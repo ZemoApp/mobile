@@ -98,7 +98,6 @@ export default ({ navigation }) => {
             setLoading(false);   
             return;  
           }
-
       }).catch(error => { 
           Alert.alert(i18n.t('dialogTitleNotice'), i18n.t('dialogBodyPleaseTryAgain'));     
           setLoading(false);   

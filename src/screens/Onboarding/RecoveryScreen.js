@@ -56,7 +56,7 @@ export default ({ navigation }) => {
     <View key={key} style={[styles.wordContainer, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
       <Text 
         style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
-          <Text style={styles.small}>{key+1}.</Text>&nbsp; 
+          <Text style={styles.small}>{key+1}.&nbsp;</Text>
           {word}
       </Text>
     </View>
@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
 
   wordContainer: {
       borderRadius: 8,
-      marginBottom: 8,
-      marginRight: 8,
+      marginBottom: 10,
+      marginRight: 10,
       paddingHorizontal: 12,
       paddingVertical: 10,
   },

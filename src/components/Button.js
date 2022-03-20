@@ -13,7 +13,7 @@ export default ({ label, loading = false, disabled = false, onPress }) => {
 
     return (
         <TouchableOpacity style={[styles.container]} activeOpacity={1} onPress={onPress}>
-            <View style={[styles.button, { opacity: disabled ? 0.3 : 1 }]}>
+            <View style={[styles.button, { opacity: disabled ? 0.25 : 1 }]}>
                 {loading && 
                     <ActivityIndicator color={Colors.black} />
                 }
