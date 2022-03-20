@@ -54,7 +54,7 @@ export default ({ navigation }) => {
 
   const seedPhrase = TEMP_SEED_PHRASE.map((word, key) =>
     <View key={key} style={[styles.wordContainer, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
-      <Text style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>{word}</Text>
+      <Text style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>{key+1}. {word}</Text>
     </View>
   );
 
