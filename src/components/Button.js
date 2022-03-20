@@ -1,24 +1,38 @@
 import React from 'react';
-import { Text, TouchableOpacity, useColorScheme, ActivityIndicator } from 'react-native';
+import { 
+    Text, 
+    View,
+    TouchableOpacity, 
+    useColorScheme, 
+    ActivityIndicator } 
+from 'react-native';
 import { Colors } from '@constants';
 
-export default ({ label, loading = false, onPress }) => {
-    const theme = useColorScheme();
+export default ({ label, loading = false, disabled = false, onPress }) => {
+    const theme = useColorScheme(); 
 
     return (
-        <TouchableOpacity style={styles.button} activeOpacity={1} onPress={onPress} >
-            {loading && 
-                <ActivityIndicator color={Colors.black} />
-            }
-                
-            {!loading && 
-                <Text style={styles.buttonText}>{label}</Text>  
-            }
+        <TouchableOpacity style={[styles.container]} activeOpacity={1} onPress={onPress}>
+            <View style={[styles.button, { opacity: disabled ? 0.3 : 1 }]}>
+                {loading && 
+                    <ActivityIndicator color={Colors.black} />
+                }
+                    
+                {!loading && 
+                    <Text style={styles.buttonText}>{label}</Text>  
+                }
+            </View>
         </TouchableOpacity>
     ); 
 }
 
 const styles = {
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+
     button: {
         alignItems: 'center',
         backgroundColor: Colors.yellow,

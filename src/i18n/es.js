@@ -29,6 +29,9 @@ export const es = {
     dialogBodyNameLimitReached: "You have reached the maximum character length allowed for a name.",
 
     // helper text
+    helperTextIAccept: "I accept the",
+    helperTextTermsOfUse: "Terms of Use",
+    helperTextPrivacyPolicy: "Privacy policy",
     helperTextOnboardingData: "Tu nombre y avatar se mostrarán en tus mensajes. Los avatares se cargan en IPFS.",
     helperTextRecovery: "Below is your recovery phrase. Please store it somewhere safe and never share it with anyone.",
     helperTextRecoveryConfirm: "I understand Zemo doesn't have the ability to restore my data and isn't liable if I lose my recovery phrase.",

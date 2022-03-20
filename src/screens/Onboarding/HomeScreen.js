@@ -1,11 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { 
   View, 
   StyleSheet, 
   Image, 
+  Text,
   useColorScheme, 
-  StatusBar 
+  TouchableOpacity,
+  StatusBar, 
+  Linking,
 } from "react-native";
+import Checkbox from 'expo-checkbox';
 import RBSheet from "react-native-raw-bottom-sheet";
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
@@ -21,11 +25,19 @@ i18n.locale = Localization.locale;
 export default ({ navigation }) => {  
   const theme = useColorScheme();
   const refRBSheet = useRef();
+  const [checked, setChecked] = useState(false);
  
+  const handleAcceptPress = () => {
+    setChecked(!checked);
+  }
+
   handleStartPress = () => {
-    refRBSheet.current.open();
+    // only show the action sheet if the terms checkbox is checked
+    if (checked) {
+      refRBSheet.current.open(); 
+    }
   } 
- 
+
   return (
     <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
         <StatusBar 
@@ -41,9 +53,33 @@ export default ({ navigation }) => {
             style={styles.logo} />
 
         <View style={styles.bottom}>
+            <TouchableOpacity onPress={handleAcceptPress} activeOpacity={1} style={styles.terms}>
+              <Checkbox 
+                value={checked} 
+                onValueChange={setChecked} 
+                color={Colors.mediumGray}
+                style={styles.checkbox} />
+              <Text 
+                style={[styles.small, { color: theme === 'dark' ? Colors.white : Colors.black }]}>
+                  {i18n.t('helperTextIAccept')}&nbsp;
+              </Text> 
+              <Text 
+                style={{ color: theme === 'dark' ? Colors.yellow : Colors.blue }} 
+                onPress={ ()=>{ Linking.openURL('https://zemo.app/terms')}}>
+                  {i18n.t('helperTextTermsOfUse')}
+              </Text>
+            </TouchableOpacity>
+            
           <Button 
             label={i18n.t('buttonStart')} 
+            disabled={!checked}
             onPress={handleStartPress} />
+
+          <Text 
+            style={[styles.small, styles.privacy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]} 
+            onPress={ ()=>{ Linking.openURL('https://zemo.app/privacy')}}>
+              {i18n.t('helperTextPrivacyPolicy')}
+          </Text>
         </View>
 
         <RBSheet 
@@ -101,5 +137,25 @@ const styles = StyleSheet.create({
   light: {
     backgroundColor: Colors.white,
   },
+
+  terms: {
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 16,
+  },
+
+  checkbox: {
+    marginRight: 6,
+  },  
+
+  small: {
+    color: Colors.mediumGray,
+    fontSize: 14,
+    textAlign: 'center',
+  },
+
+  privacy: {
+    marginTop: 16,
+  }
 
 });
