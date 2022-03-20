@@ -23,6 +23,7 @@ i18n.fallbacks = true;
 i18n.translations = { en, zh, hi, es, ru };
 i18n.locale = Localization.locale;
 
+// Avatar attributes
 const NAME_MAX_LENGTH = 30;
 const AVATAR_MAX_HEIGHT = 400;
 const AVATAR_MAX_WIDTH = 400;

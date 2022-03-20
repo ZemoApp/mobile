@@ -24,7 +24,7 @@ export default ({ id, navigation, refRBSheet }) => {
         // I put a small timeout here to avoid a UI glitch when the view change
         setTimeout(() => {
             navigation.push('OnboardingProfile')
-        }, 200)
+        }, 250) 
     }
 
     const handleOnboardingRestore = () => {
@@ -32,7 +32,7 @@ export default ({ id, navigation, refRBSheet }) => {
         // I put a small timeout here to avoid a UI glitch when the view change
         setTimeout(() => {
             navigation.push('Restore');
-        }, 200)
+        }, 250)
     }
 
     const handleOnboardingRecoveryConfirmPress = () => {
