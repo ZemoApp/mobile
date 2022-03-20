@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet, useColorScheme } from 'react-native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';

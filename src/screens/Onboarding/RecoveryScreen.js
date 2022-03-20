@@ -8,6 +8,7 @@ import {
     useColorScheme, 
     Alert,
     Platform,
+    StatusBar,
     ToastAndroid
 } from "react-native";
 import * as Clipboard from 'expo-clipboard';
@@ -64,6 +65,9 @@ export default ({ navigation }) => {
 
   return (
     <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
+        <StatusBar 
+            barStyle={theme === 'dark' ? 'default' : 'dark-content'} 
+            backgroundColor="transparent" translucent />
         <ScrollView style={styles.scrollView}>
             <View style={styles.top}>
                 <Text 

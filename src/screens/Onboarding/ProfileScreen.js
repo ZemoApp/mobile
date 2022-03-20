@@ -131,7 +131,7 @@ export default ({ navigation }) => {
               <View style={[styles.avatar, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
                 <Icon name="add" size={44} style={{color: theme === 'dark' ? Colors.yellow : Colors.darkGray}} />
               </View>
-            ) : ( 
+            ) : (    
               <ImageBackground 
                 style={styles.avatar} 
                 imageStyle={{ borderRadius: 65}}
