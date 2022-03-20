@@ -51,18 +51,25 @@ export default ({ navigation }) => {
         setCopyLabel(i18n.t('statusMessageCopied'));
     }
   }
-
+ 
   const seedPhrase = TEMP_SEED_PHRASE.map((word, key) =>
     <View key={key} style={[styles.wordContainer, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
-      <Text style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>{key+1}. {word}</Text>
+      <Text 
+        style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
+          <Text style={styles.small}>{key+1}.</Text>&nbsp; 
+          {word}
+      </Text>
     </View>
-  );
+  ); 
 
   return (
     <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
         <ScrollView style={styles.scrollView}>
             <View style={styles.top}>
-                <Text style={[styles.helperText, {color: theme === 'dark' ? Colors.white : Colors.black}]}>{i18n.t('helperTextRecovery')}</Text>
+                <Text 
+                  style={[styles.helperText, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
+                    {i18n.t('helperTextRecovery')}
+                </Text>
                 <View style={styles.seed}>{seedPhrase}</View>
                 <TouchableOpacity onPress={handleCopyPress} activeOpacity={1}>
                     <Text style={[styles.copy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]}>{copyLabel}</Text>
@@ -125,6 +132,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 20,
+  },
+
+  small: {
+    color: Colors.mediumGray,
+    fontSize: 14,
   },
 
   copy: {
