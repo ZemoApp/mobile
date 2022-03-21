@@ -1,6 +1,10 @@
 import { Colors } from '@constants';
 import { Global } from '@styles';
 
+export const themeStyle = (theme) => {
+  return theme === 'dark' ? Global.dark : Global.light;
+}
+
 export const themeBackgroundColor = (theme) => {
   return theme === 'dark' ? Colors.darkGray : Colors.lightGray;
 }

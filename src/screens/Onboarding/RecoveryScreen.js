@@ -23,6 +23,7 @@ import {
   themeTextColor, 
   themeStatusBarStyle,
   themeLinkColor,
+  themeStyle,
 } from "@utils";
 
 // Localization
@@ -70,7 +71,7 @@ export default ({ navigation }) => {
   ); 
 
   return (
-    <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
+    <View style={[Global.container, themeStyle(theme)]}>
         <StatusBar 
             barStyle={themeStatusBarStyle(theme)} 
             backgroundColor="transparent" translucent />

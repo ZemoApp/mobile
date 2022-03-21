@@ -18,7 +18,12 @@ import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
 import { Global } from '@styles';
-import { themeBackgroundColor, themeTextColor, themeIconColor } from "@utils";
+import { 
+  themeBackgroundColor, 
+  themeTextColor, 
+  themeIconColor, 
+  themeStyle,
+} from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -124,7 +129,7 @@ export default ({ navigation }) => {
   }
 
   return (
-    <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
+    <View style={[Global.container, themeStyle(theme)]}>
       <ScrollView style={Global.scrollView}>
         <View style={Global.top}>
 
