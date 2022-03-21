@@ -18,6 +18,12 @@ import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
 import { Global } from '@styles';
+import { 
+  themeBackgroundColor, 
+  themeTextColor, 
+  themeStatusBarStyle,
+  themeLinkColor,
+} from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -54,9 +60,9 @@ export default ({ navigation }) => {
   }
  
   const seedPhrase = TEMP_SEED_PHRASE.map((word, key) =>
-    <View key={key} style={[styles.wordContainer, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
+    <View key={key} style={[styles.wordContainer, { backgroundColor: themeBackgroundColor(theme) }]}>
       <Text 
-        style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
+        style={[styles.word, {color: themeTextColor(theme) }]}>
           <Text style={Global.small}>{key+1}.&nbsp;</Text>
           {word}
       </Text>
@@ -66,18 +72,18 @@ export default ({ navigation }) => {
   return (
     <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
         <StatusBar 
-            barStyle={theme === 'dark' ? 'default' : 'dark-content'} 
+            barStyle={themeStatusBarStyle(theme)} 
             backgroundColor="transparent" translucent />
 
         <ScrollView style={Global.scrollView}>
             <View style={Global.top}>
                 <Text 
-                  style={[Global.helperText, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
+                  style={[Global.helperText, { color: themeTextColor(theme) }]}>
                     {i18n.t('helperTextRecovery')}
                 </Text>
                 <View style={styles.seed}>{seedPhrase}</View>
                 <TouchableOpacity onPress={handleCopyPress} activeOpacity={1}>
-                    <Text style={[styles.copy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]}>{copyLabel}</Text>
+                    <Text style={[styles.copy, { color: themeLinkColor(theme) }]}>{copyLabel}</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>

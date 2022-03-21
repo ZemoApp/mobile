@@ -18,6 +18,7 @@ import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
 import { Global } from '@styles';
+import { themeBackgroundColor, themeTextColor, themeIconColor } from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -129,8 +130,8 @@ export default ({ navigation }) => {
 
           <TouchableOpacity onPress={handleSelectAvatar} activeOpacity={1} style={Global.alignCenter}>
             {avatar === null ? (
-              <View style={[Global.avatarBig, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
-                <Icon name="add" size={44} style={{color: theme === 'dark' ? Colors.yellow : Colors.darkGray}} />
+              <View style={[Global.avatarBig, { backgroundColor: themeBackgroundColor(theme) }]}>
+                <Icon name="add" size={44} style={{color: themeIconColor(theme) }} />
               </View>
             ) : (    
               <ImageBackground 
@@ -140,18 +141,18 @@ export default ({ navigation }) => {
                 resizeMode="cover" />
             )}
 
-            <Text style={[Global.label, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelAvatar')}</Text>
+            <Text style={[Global.label, { color: themeTextColor(theme) }]}>{i18n.t('inputLabelAvatar')}</Text>
           </TouchableOpacity>
 
           <View style={[Global.inputWrapper, Global.marginTopLarge]}>
-            <Text style={[Global.inputLabel, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelName')}</Text>
+            <Text style={[Global.inputLabel, { color: themeTextColor(theme) }]}>{i18n.t('inputLabelName')}</Text>
             <TextInput
               placeholder={i18n.t('inputPlaceholderName')}
               placeholderTextColor={Colors.mediumGray}
               textContentType="name"
               maxLength={NAME_MAX_LENGTH}
               onChangeText={text => handleInputChange(text)}
-              style={[Global.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
+              style={[Global.input, { color: themeTextColor(theme) }]} />
           </View>
         </View>
       </ScrollView>

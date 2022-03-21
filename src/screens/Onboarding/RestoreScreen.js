@@ -12,6 +12,12 @@ import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
 import { Global } from '@styles';
+import { 
+  themeBackgroundColor, 
+  themeTextColor, 
+  themeStatusBarStyle,
+  themeLinkColor,
+} from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -30,7 +36,7 @@ export default () => {
             numberOfLines={6}
             placeholderTextColor={Colors.mediumGray}
             placeholder={i18n.t('inputPlaceholderSeed')}
-            style={[Global.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
+            style={[Global.input, { color: themeTextColor(theme) }]} />
         </View>
 
       <View style={Global.bottom}>

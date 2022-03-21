@@ -17,6 +17,12 @@ import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { ActionSheet, Button } from '@components';
 import { Global } from '@styles';
+import { 
+  themeBackgroundColor, 
+  themeTextColor, 
+  themeStatusBarStyle,
+  themeLinkColor,
+} from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -42,7 +48,7 @@ export default ({ navigation }) => {
   return (
     <View style={[Global.container, Global.justifyCenter, theme === 'dark' ? Global.dark : Global.light]}>
         <StatusBar 
-            barStyle={theme === 'dark' ? 'default' : 'dark-content'} 
+            barStyle={themeStatusBarStyle(theme)} 
             backgroundColor="transparent" translucent />
 
         <Image 
@@ -61,11 +67,11 @@ export default ({ navigation }) => {
                 color={Colors.mediumGray}
                 style={Global.checkbox} />
               <Text 
-                style={[Global.small, { color: theme === 'dark' ? Colors.white : Colors.black }]}>
+                style={[Global.small, { color: themeTextColor(theme) }]}>
                   {i18n.t('helperTextIAccept')}&nbsp;
               </Text> 
               <Text 
-                style={{ color: theme === 'dark' ? Colors.yellow : Colors.blue }} 
+                style={{ color: themeLinkColor(theme) }} 
                 onPress={ ()=>{ Linking.openURL('https://zemo.app/terms')}}>
                   {i18n.t('helperTextTermsOfUse')}
               </Text>
@@ -77,7 +83,7 @@ export default ({ navigation }) => {
             onPress={handleStartPress} />
 
           <Text 
-            style={[Global.small, styles.privacy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]} 
+            style={[Global.small, styles.privacy, { color: themeLinkColor(theme) }]} 
             onPress={ ()=>{ Linking.openURL('https://zemo.app/privacy')}}>
               {i18n.t('helperTextPrivacyPolicy')}
           </Text>
@@ -89,7 +95,7 @@ export default ({ navigation }) => {
           height={148}
           customStyles={{
             container: {
-              backgroundColor: theme === 'dark' ? Colors.dark : Colors.white
+              backgroundColor: themeBackgroundColor(theme)
             }
           }}>
             <ActionSheet 
