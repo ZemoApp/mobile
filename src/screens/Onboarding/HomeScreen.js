@@ -67,11 +67,11 @@ export default ({ navigation }) => {
                 color={Colors.mediumGray}
                 style={Global.checkbox} />
               <Text 
-                style={[Global.small, { color: themeTextColor(theme) }]}>
+                style={[Global.medium, { color: themeTextColor(theme) }]}>
                   {i18n.t('helperTextIAccept')}&nbsp;
               </Text> 
               <Text 
-                style={{ color: themeLinkColor(theme) }} 
+                style={[Global.medium, { color: themeLinkColor(theme) }]} 
                 onPress={ ()=>{ Linking.openURL('https://zemo.app/terms')}}>
                   {i18n.t('helperTextTermsOfUse')}
               </Text>
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     height: 39,
     marginTop: 7,
     marginBottom: 110,
+    resizeMode: 'contain',
     width: 106,
-    resizeMode: 'contain'
   },
 
   terms: {

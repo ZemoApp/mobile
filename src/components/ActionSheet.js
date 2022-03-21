@@ -10,6 +10,8 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
+import { Global } from '@styles';
+import { themeLabelColor } from "@utils";
 
 // Localization
 i18n.fallbacks = true;
@@ -46,7 +48,7 @@ export default ({ id, navigation, refRBSheet }) => {
                     <TouchableOpacity activeOpacity={1}>
                         <View style={styles.option}>
                             <Icon name="add" size={28} style={[styles.icon, { color: Colors.mediumGray }]} />
-                            <Text style={theme === 'dark' ? styles.labelDark : styles.labelLight} onPress={handleOnboardingNew}>
+                            <Text style={themeLabelColor(theme)} onPress={handleOnboardingNew}>
                                 {i18n.t('actionOptionNew')}
                             </Text>
                         </View>
@@ -54,7 +56,7 @@ export default ({ id, navigation, refRBSheet }) => {
                     <TouchableOpacity activeOpacity={1}>
                         <View style={styles.option}>
                             <Icon name="history" size={24} style={[styles.icon, { color: Colors.mediumGray }]} />
-                            <Text style={theme === 'dark' ? styles.labelDark : styles.labelLight} onPress={handleOnboardingRestore}>
+                            <Text style={themeLabelColor(theme)} onPress={handleOnboardingRestore}>
                                 {i18n.t('actionOptionRestore')}
                             </Text>
                         </View>
@@ -67,7 +69,7 @@ export default ({ id, navigation, refRBSheet }) => {
                     <TouchableOpacity activeOpacity={1}>
                         <View style={styles.option}>
                             <Icon name="send" size={24} style={[styles.icon, { color: Colors.mediumGray }]} />
-                            <Text style={theme === 'dark' ? styles.labelDark : styles.labelLight}>
+                            <Text style={themeLabelColor(theme)}>
                                 {i18n.t('actionOptionSend')}
                             </Text>
                         </View>
@@ -75,7 +77,7 @@ export default ({ id, navigation, refRBSheet }) => {
                     <TouchableOpacity activeOpacity={1}>
                         <View style={styles.option}>
                             <Icon name="qr-code" size={26} style={[styles.icon, { color: Colors.mediumGray }]} />
-                            <Text style={theme === 'dark' ? styles.labelDark : styles.labelLight}>
+                            <Text style={themeLabelColor(theme)}>
                                 {i18n.t('actionOptionReceive')}
                             </Text>
                         </View>
@@ -89,7 +91,7 @@ export default ({ id, navigation, refRBSheet }) => {
                         <View style={styles.option}>
                             <Icon name="launch" size={24} style={[styles.icon, { color: Colors.mediumGray }]} />
                             <Text 
-                                style={theme === 'dark' ? styles.labelDark : styles.labelLight}>
+                                style={themeLabelColor(theme)}>
                                     {i18n.t('actionOptionViewOnBlockExplorer')}
                             </Text>
                         </View>
@@ -103,7 +105,7 @@ export default ({ id, navigation, refRBSheet }) => {
                         <View style={styles.option}>
                             <Icon name="block" size={24} style={[styles.icon, { color: Colors.mediumGray }]} />
                             <Text 
-                                style={theme === 'dark' ? styles.labelDark : styles.labelLight}>
+                                style={themeLabelColor(theme)}>
                                     {i18n.t('actionOptionBlock')}
                             </Text>
                         </View>
@@ -112,7 +114,7 @@ export default ({ id, navigation, refRBSheet }) => {
                         <View style={styles.option}>
                             <Icon name="content-copy"  size={24} style={[styles.icon, { color: Colors.mediumGray }]} />
                             <Text 
-                                style={theme === 'dark' ? styles.labelDark : styles.labelLight}>
+                                style={themeLabelColor(theme)}>
                                     {i18n.t('actionOptionCopyAddress')}
                             </Text>
                         </View>
@@ -141,19 +143,4 @@ const styles = {
         width: 48,
     },
 
-    labelDark: {
-        color: Colors.white,
-        fontSize: 18,
-        fontWeight: '400',
-        lineHeight: 50,
-        width: '100%'
-    },
-
-    labelLight: {
-        color: Colors.black,
-        fontSize: 18,
-        fontWeight: '400',
-        lineHeight: 50,
-        width: '100%'
-    },
 }

@@ -33,6 +33,12 @@ export default StyleSheet.create({
       textAlign: 'center',
     },
 
+    medium: {
+      color: Colors.mediumGray,
+      fontSize: 16,
+      textAlign: 'center',
+    },
+
     // TEXT
     helperText: {
       fontSize: 17,
@@ -88,6 +94,22 @@ export default StyleSheet.create({
     
     light: {
       backgroundColor: Colors.white,
+    },
+
+    labelDark: {
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: '400',
+      lineHeight: 50,
+      width: '100%'
+    },
+
+    labelLight: {
+      color: Colors.black,
+      fontSize: 18,
+      fontWeight: '400',
+      lineHeight: 50,
+      width: '100%'
     },
 
     // INPUTS
