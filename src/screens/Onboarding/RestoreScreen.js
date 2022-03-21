@@ -11,6 +11,7 @@ import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
+import { Global } from '@styles';
 
 // Localization
 i18n.fallbacks = true;
@@ -21,16 +22,18 @@ export default () => {
   const theme = useColorScheme();
 
   return (
-    <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
-        <View style={styles.inputWrapper}>
+    <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
+        <View style={Global.inputWrapper}>
           <TextInput
-            autoFocus={true}
+            autoFocus={true} 
+            multiline={true}
+            numberOfLines={6}
             placeholderTextColor={Colors.mediumGray}
             placeholder={i18n.t('inputPlaceholderSeed')}
-            style={[styles.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
+            style={[Global.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
         </View>
 
-      <View style={styles.bottom}>
+      <View style={Global.bottom}>
         <Button 
             label={i18n.t('buttonRestore')}
             onPress={handleStartPress} />
@@ -40,38 +43,5 @@ export default () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20,
-  },
 
-  bottom: {
-    alignItems: 'center',
-    bottom: 24,
-    position: 'absolute',
-    width: '100%'
-  },
-
-  dark: {
-    backgroundColor: Colors.dark,
-  },
-
-  light: {
-    backgroundColor: Colors.white,
-  },
-
-  inputWrapper: {
-    width: '100%'
-  },
-
-  inputLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-
-  input: {
-    fontSize: 18,
-    width: '100%'
-  },
 });

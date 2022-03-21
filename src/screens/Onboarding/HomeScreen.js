@@ -16,6 +16,7 @@ import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { ActionSheet, Button } from '@components';
+import { Global } from '@styles';
 
 // Localization
 i18n.fallbacks = true;
@@ -39,7 +40,7 @@ export default ({ navigation }) => {
   } 
 
   return (
-    <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
+    <View style={[Global.container, Global.justifyCenter, theme === 'dark' ? Global.dark : Global.light]}>
         <StatusBar 
             barStyle={theme === 'dark' ? 'default' : 'dark-content'} 
             backgroundColor="transparent" translucent />
@@ -52,15 +53,15 @@ export default ({ navigation }) => {
             source={theme === 'dark' ? require("@assets/images/zemo-logo-light.png") : require("@assets/images/zemo-logo-dark.png")} 
             style={styles.logo} />
 
-        <View style={styles.bottom}>
+        <View style={Global.bottom}>
             <TouchableOpacity onPress={handleAcceptPress} activeOpacity={1} style={styles.terms}>
               <Checkbox 
                 value={checked} 
                 onValueChange={setChecked} 
                 color={Colors.mediumGray}
-                style={styles.checkbox} />
+                style={Global.checkbox} />
               <Text 
-                style={[styles.small, { color: theme === 'dark' ? Colors.white : Colors.black }]}>
+                style={[Global.small, { color: theme === 'dark' ? Colors.white : Colors.black }]}>
                   {i18n.t('helperTextIAccept')}&nbsp;
               </Text> 
               <Text 
@@ -76,7 +77,7 @@ export default ({ navigation }) => {
             onPress={handleStartPress} />
 
           <Text 
-            style={[styles.small, styles.privacy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]} 
+            style={[Global.small, styles.privacy, { color: theme === 'dark' ? Colors.yellow : Colors.blue }]} 
             onPress={ ()=>{ Linking.openURL('https://zemo.app/privacy')}}>
               {i18n.t('helperTextPrivacyPolicy')}
           </Text>
@@ -102,20 +103,6 @@ export default ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-
-  bottom: {
-    alignItems: 'center',
-    bottom: 24,
-    position: 'absolute',
-    width: '100%'
-  },
-
   icon: {
     height: 142,
     width: 142,
@@ -130,32 +117,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
 
-  dark: {
-    backgroundColor: Colors.dark,
-  },
-
-  light: {
-    backgroundColor: Colors.white,
-  },
-
   terms: {
     flex: 1,
     flexDirection: 'row',
     marginBottom: 16,
   },
 
-  checkbox: {
-    marginRight: 6,
-  },  
-
-  small: {
-    color: Colors.mediumGray,
-    fontSize: 14,
-    textAlign: 'center',
-  },
-
   privacy: {
     marginTop: 16,
   }
-
 });

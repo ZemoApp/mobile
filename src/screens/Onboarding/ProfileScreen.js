@@ -17,6 +17,7 @@ import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
+import { Global } from '@styles';
 
 // Localization
 i18n.fallbacks = true;
@@ -122,41 +123,41 @@ export default ({ navigation }) => {
   }
 
   return (
-    <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.top}>
+    <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
+      <ScrollView style={Global.scrollView}>
+        <View style={Global.top}>
 
-          <TouchableOpacity onPress={handleSelectAvatar} activeOpacity={1} style={{alignItems: 'center'}}>
+          <TouchableOpacity onPress={handleSelectAvatar} activeOpacity={1} style={Global.alignCenter}>
             {avatar === null ? (
-              <View style={[styles.avatar, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
+              <View style={[Global.avatarBig, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
                 <Icon name="add" size={44} style={{color: theme === 'dark' ? Colors.yellow : Colors.darkGray}} />
               </View>
             ) : (    
               <ImageBackground 
-                style={styles.avatar} 
+                style={Global.avatarBig} 
                 imageStyle={{ borderRadius: 65}}
                 source={{ uri: avatar.uri }} 
                 resizeMode="cover" />
             )}
 
-            <Text style={[styles.label, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelAvatar')}</Text>
+            <Text style={[Global.label, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelAvatar')}</Text>
           </TouchableOpacity>
 
-          <View style={styles.inputWrapper}>
-            <Text style={[styles.inputLabel, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelName')}</Text>
+          <View style={[Global.inputWrapper, Global.marginTopLarge]}>
+            <Text style={[Global.inputLabel, { color: theme === 'dark' ? Colors.white : Colors.black }]}>{i18n.t('inputLabelName')}</Text>
             <TextInput
               placeholder={i18n.t('inputPlaceholderName')}
               placeholderTextColor={Colors.mediumGray}
               textContentType="name"
               maxLength={NAME_MAX_LENGTH}
               onChangeText={text => handleInputChange(text)}
-              style={[styles.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
+              style={[Global.input, { color: theme === 'dark' ? Colors.white : Colors.black }]} />
           </View>
         </View>
       </ScrollView>
 
-      <View style={styles.bottom}>
-        <Text style={styles.small}>
+      <View style={Global.bottom}>
+        <Text style={[Global.small, Global.paddingVertical]}>
           {i18n.t('helperTextOnboardingData')}
         </Text>
 
@@ -170,73 +171,5 @@ export default ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    width: '100%'
-  },
 
-  scrollView: {
-    width: '100%'
-  },
-
-  top: {
-    alignItems: 'center',
-    marginBottom: 100,
-    paddingHorizontal: 20,
-    width: '100%'
-  },
-
-  bottom: {
-    alignItems: 'center',
-    bottom: 24,
-    paddingHorizontal: 20,
-    position: 'absolute',
-    width: '100%'
-  },
-
-  dark: {
-    backgroundColor: Colors.dark,
-  },
-
-  light: {
-    backgroundColor: Colors.white,
-  },
-
-  avatar: {
-    alignItems: "center",
-    backgroundColor: Colors.darkGray,
-    borderRadius: 65,
-    height: 130,
-    justifyContent: "center",
-    marginBottom: 10,
-    width: 130,
-  },
-
-  inputWrapper: {
-    marginTop: 30,
-    width: '100%'
-  },
-
-  inputLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-
-  input: {
-    fontSize: 18,
-    width: '100%'
-  },
-
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-
-  small: {
-    color: Colors.mediumGray,
-    fontSize: 14,
-    textAlign: 'center',
-    marginBottom: 16,
-  }
 });

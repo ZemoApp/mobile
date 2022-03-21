@@ -17,6 +17,7 @@ import i18n from 'i18n-js';
 import { en, zh, hi, es, ru } from '@languages';
 import { Colors } from '@constants';
 import { Button } from '@components';
+import { Global } from '@styles';
 
 // Localization
 i18n.fallbacks = true;
@@ -26,9 +27,8 @@ i18n.locale = Localization.locale;
 const TEMP_SEED_PHRASE = ['floor', 'window', 'round', 'paper', 'continue', 'yard', 'forecast', 'angry', 'previous', 'nail', 'flood', 'restore', 'volume', 'rain', 'final', 'fork', 'wind', 'realize', 'forward', 'length', 'floor', 'window', 'round', 'paper'];
 
 export default ({ navigation }) => {
-    const theme = useColorScheme();
-    const [copyLabel, setCopyLabel] = useState(i18n.t('buttonCopyToClipboard'));
-
+  const theme = useColorScheme();
+  const [copyLabel, setCopyLabel] = useState(i18n.t('buttonCopyToClipboard'));
 
   const handleRestorePress = () => {
     Alert.alert(
@@ -57,21 +57,22 @@ export default ({ navigation }) => {
     <View key={key} style={[styles.wordContainer, { backgroundColor: theme === 'dark' ? Colors.darkGray : Colors.lightGray }]}>
       <Text 
         style={[styles.word, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
-          <Text style={styles.small}>{key+1}.&nbsp;</Text>
+          <Text style={Global.small}>{key+1}.&nbsp;</Text>
           {word}
       </Text>
     </View>
   ); 
 
   return (
-    <View style={[styles.container, theme === 'dark' ? styles.dark : styles.light]}>
+    <View style={[Global.container, theme === 'dark' ? Global.dark : Global.light]}>
         <StatusBar 
             barStyle={theme === 'dark' ? 'default' : 'dark-content'} 
             backgroundColor="transparent" translucent />
-        <ScrollView style={styles.scrollView}>
-            <View style={styles.top}>
+
+        <ScrollView style={Global.scrollView}>
+            <View style={Global.top}>
                 <Text 
-                  style={[styles.helperText, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
+                  style={[Global.helperText, {color: theme === 'dark' ? Colors.white : Colors.black}]}>
                     {i18n.t('helperTextRecovery')}
                 </Text>
                 <View style={styles.seed}>{seedPhrase}</View>
@@ -82,7 +83,7 @@ export default ({ navigation }) => {
         </ScrollView>
 
 
-      <View style={styles.bottom}>
+      <View style={Global.bottom}>
         <Button 
             label={i18n.t('buttonContinue')} 
             onPress={handleRestorePress} />
@@ -93,54 +94,11 @@ export default ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    width: '100%'
-  },
-
-  scrollView: {
-    width: '100%'
-  },
-
-  dark: {
-    backgroundColor: Colors.dark,
-  },
-
-  light: {
-    backgroundColor: Colors.white,
-  },
-
-  top: {
-    alignItems: 'center',
-    marginBottom: 100,
-    paddingHorizontal: 20,
-    width: '100%'
-  },
-
-  bottom: {
-    alignItems: 'center',
-    bottom: 24,
-    paddingHorizontal: 20,
-    position: 'absolute',
-    width: '100%'
-  },
-
-  helperText: {
-    fontSize: 17,
-    width: '100%'
-  },
-
   seed: {
     justifyContent: "center",
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 20,
-  },
-
-  small: {
-    color: Colors.mediumGray,
-    fontSize: 14,
   },
 
   copy: {
